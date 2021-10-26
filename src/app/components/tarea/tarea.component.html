@@ -1,0 +1,55 @@
+<div class="container mt-5">
+
+    <div class="row">
+     <h1 class="text-center antique">LISTA DE TAREAS</h1>
+     <h4 class="text-center"> Ingresa y arrastra las tareas de acuerdo al progreso.</h4>
+    
+    </div><br>
+
+    <div class="row">
+        <div class="col lg offset lg 2 mg-4">
+            <input  [(ngModel)]="tarea" (keyup.enter)="agregartarea()" class="form-control form-control-lg text-center" type="text" placeholder="Ingrese tarea">
+        </div>
+    </div><br>
+  
+    <div class="row">
+     
+           <div class = "col-lg-4">
+                 <h4 class="antique text-center">TODO</h4>
+
+                    <div cdkDropList class="example-list" id="listtodo"  [cdkDropListData]="todo"   [cdkDropListConnectedTo]="['listprogreso']" (cdkDropListDropped)="drop($event)">
+                       <div class="example-box" *ngFor="let item of todo" cdkDrag>
+                       <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                       {{item}}
+                    </div>
+                </div>
+            </div>
+
+
+            <div class = "col-lg-4">
+                <h4 class="antique text-center">EN PROGRESO</h4>
+
+                   <div cdkDropList class="example-list" id="listprogreso"    [cdkDropListData]="progreso"  [cdkDropListConnectedTo]="['listtodo','listfinal']" (cdkDropListDropped)="drop($event)">
+                      <div class="example-box" *ngFor="let item of progreso" cdkDrag>
+                      <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                      {{item}}
+                   </div>
+               </div>
+           </div>
+
+
+           <div class = "col-lg-4">
+            <h4 class="antique text-center">TAREA ECHA</h4>
+
+               <div cdkDropList class="example-list" id="listfinal"    [cdkDropListData]="final"  [cdkDropListConnectedTo]="['listprogreso']" (cdkDropListDropped)="drop($event)">
+                  <div class="example-box" *ngFor="let item of final" cdkDrag>
+                  <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                  {{item}}
+               </div>
+           </div>
+       </div>
+
+
+     </div>
+
+  </div>
